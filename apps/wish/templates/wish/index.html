@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <title>Login and Registration</title>
+</head>
+<body style="background-image: url(https://www.studio13spraytanning.com/wp-content/uploads/2013/04/afe425a43568df20225cfaf685639fc5.png)">
+     <nav class="site-header bg-white sticky-top py-1">
+        <div  class="container d-flex flex-column flex-md-row justify-content-between">
+            <li class="py-2 d-none d-md-inline-block">
+                <a style="color:#E59866; font-family: Raleway; font-size:18px;" class="nav-link" href="/">Home</a>
+            </li>
+            <li class="py-2 d-none d-md-inline-block">
+                <a style="color:#E59866; font-family: Raleway; font-size:18px;" class="nav-link" href="/about">About</a>
+            </li>
+            <li class="py-2 d-none d-md-inline-block">
+                <a style="color:#E59866; font-family: Raleway; font-size:18px;" class="nav-link" href="/contact">Contact</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+        <h4 class="alert alert-warning" role="alert">{{message}}</h4>
+        {% endfor %}
+    {% endif %}
+
+    <section class="page-section about-heading" style="margin-top:0px;">
+            <div class="container">
+              <img class="img-fluid rounded about-heading-img mb-4 mb-lg-0" src="{% static "images/index2.jpg" %}" alt="">
+              <div class="about-heading-content">
+                <div class="row">
+                  <div class="col-xl-9 col-lg-10 mx-auto" >
+                    <div class="bg-faded rounded p-2" style="height:750px;">
+                      <h2 class="section-heading mb-1" style="margin-left:70px;">
+                        <span class="section-heading-lower"> <img src="https://static1.squarespace.com/static/56b46411356fb0307ba84bd3/t/57e980e2e4fcb54af2a38dc6/1474920680832/" alt=""></span>
+                      </h2>
+                      <div style="display:inline-block;">
+                            <div class="card" style="width:400px; margin-left:20px; margin-top:-20px; display: inline-block; position: absolute" >
+                            <div class="card-header" style="color:#808B96; font-family: Raleway; font-size:22px; text-align:center">Register</div>
+                            <form class="card-body" style="color:#808B96; text-align: right; font-family: Raleway;" action="/process" method="POST">
+                                {% csrf_token %}
+                                <p>Name: <input type="text" name="name"></p>
+                                <p>Username: <input type="text" name="username"></p>
+                                <p>Email: <input type="email" name="email"></p>
+                                <p>Password: <input type="password" name="password"></p>
+                                <p>Password Confirmation: <input type="password" name="confirm_password"></p>
+                                <p>Birthday: <input type="date" name="birthday"></p>
+                                <input type="Submit" vaule="login">
+                            </form>    
+                            </div>
+                            <br>
+                                <div class="card" style="width:350px;  margin-top:-45px; margin-left:440px; display: inline-block;">
+                                <div class="card-header" style="color:#808B96; font-family: Raleway; font-size:22px; text-align:center">Login</div>
+                                <form class="card-body" style="color:#808B96; text-align: right; font-family: Raleway;" action="/login" method="POST">
+                                    {% csrf_token %}
+                                    <p>Email: <input type="email" name="email"></p>
+                                    <p>Password: <input type="password" name="password"></p>
+                                    <input type="Submit" vaule="login">
+                                </form>
+                                </div>
+                            </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+   
+</div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </body>
+</html>
