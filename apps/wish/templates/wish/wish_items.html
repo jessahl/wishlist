@@ -42,7 +42,13 @@
                                             </div>
                                                 <div class="card-body text-secondary" style="text-align: left; font-family: Raleway;">
                                                     <div class="card-body" style="margin-bottom:10px; padding:50px;">
+                                                        <blockquote class="blockquote card-text">
+                                                                <h5>{{item.description}}.</h5>
+                                                                <footer class="blockquote-footer">Added By: {{item.added_by.username}} <br> <cite title="Source Title">Created At: {{item.created_at}}</cite></footer>
+                                                        </blockquote>
                                                         {% for user in item.wished_by.all  %}
+                                                        <p><img  style="width:325px;" src="{{item.image}}" alt="{{item.description}}"></p>
+                                                        <h5>{{item.description}}.</h5> 
                                                         <p class="card-text">{{user.username}}</p>             
                                                         {% endfor %}
                                                     </div>

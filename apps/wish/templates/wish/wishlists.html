@@ -28,50 +28,52 @@
         {% endfor %}
     {% endif %}  
     <section class="page-section about-heading" style="margin-top:0px;">
-        <div class="container col-10">
-            <img class="img-fluid rounded about-heading-img mb-4 mb-lg-0 col-12" src="https://www.photohdx.com/images/2017/01/white-desktop-feminine-styled-photo.jpg" alt="">
+        <div class="container">
+            <img class="img-fluid rounded about-heading-img mb-4 mb-lg-0" src="https://www.photohdx.com/images/2017/01/white-desktop-feminine-styled-photo.jpg" alt="">
             <div class="about-heading-content">
                 <div class="row" >
-                    <div class="col-lg-10 mx-auto" >
-                        <div class="bg-faded col-12 rounded p-5" style="margin-top:-250px; box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="col-xl-9 col-lg-10 mx-auto" >
+                        <div class="bg-faded rounded p-2" style="padding:50px; margin-top:50px; box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                             <div class="section-heading mb-1" style="margin-left:23px;">
                                 <h2 class="section-heading-lower text-capitalize" style="text-align: left; font-family: Raleway; margin-top:25px;">Hello {{user.username}}</h2>
                             </div>
                             <div style="display:inline-block;" >
-                                <div class="card col-11 " style=" margin-bottom:30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                                    <div class="card-header btn-toolbar mb-2 mb-md-0 bg-white">
+                                <div class="card" style="width:765px; margin-left:23px; margin-bottom:30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                                    <div class="card-header btn-toolbar mb-2 mb-md-0 bg-light">
                                         <h4 style="color:#808B96; font-family: Raleway; font-size:22px; margin-left:23px;">Your Wishlist</h4>
-                                        <div class="btn-toolbar mb-2 mb-md-0" style="margin-left:750px">
-                                            <div class="btn-group">
+                                        <div class="btn-toolbar mb-2 mb-md-0">
+                                            <div class="btn-group mr-2" style="margin-left:295px;">
                                                 <a href="/other_items"><button class="btn btn-sm btn-outline-secondary">Other's Wishlist Items</button></a>
                                             </div>
                                             <div class="btn-group mr-2" style="margin-left:15px;">
                                                 <a href="/create"><button class="btn btn-sm btn-outline-secondary">Add Item</button></a>
                                             </div>
                                         </div>
-                                        <table class="table table-bordered" style="margin-bottom: 50px;">
-                                                {% for item in wished %} 
-                                                <tr>
-                                                {% if item.added_by.id == user.id %}
-                                                    <td>
-                                                        <img src="{{item.image}}" alt="">
-                                                        <a href="/wish_item/{{item.id}}" style="color:#E59866;" class="text-capitalize">{{item.item}}</a>
-                                                        <p class="text-capitalize">{{item.added_by.username}}</p>
-                                                        <tp class="text-capitalize">{{item.created_at}}</p>  
-                                                        <a style="color:#E59866;" href="/delete/{{item.id}}">Delete</a> | <a style="color:#E59866;" href="/update/{{item.id}}">Update</a>
-                                                    </td>
-                                                {% elif item.added_by.id != user.id %}
-                                                    <td>
-                                                        <img src="{{item.image}}" alt="">
-                                                        <a href="/wish_item/{{item.id}}" style="color:#E59866;" class="text-capitalize">{{item.item}}</a>
-                                                        <p class="text-capitalize">{{item.added_by.username}}</p>
-                                                        <tp class="text-capitalize">{{item.created_at}}</p>  
-                                                        <a style="color:#E59866;" href="/delete/{{item.id}}">Delete</a> | <a style="color:#E59866;" href="/update/{{item.id}}">Update</a>
-                                                    </td>
-                                                </tr>
-                                                {% endif %}
-                                                {% endfor %}     
-                                            </table>   
+                                        {% for item in wished %} 
+                                        {% if item.added_by.id == user.id %}
+                                        <div class="card-body text-secondary" style="text-align: right; font-family: Raleway;" action="/process" method="POST">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-11 portfolio-item">
+                                                    <div class="card h-100">
+                                                    <a href="/wish_item/{{item.id}}"><img class="card-img-top" style="width:400px;" src="{{item.image}}" alt="{{item.description}}"></a>
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">
+                                                            <a href="/wish_item/{{item.id}}" style="color:#E59866;">{{item.item}}</a>
+                                                            </h4>
+                                                            <blockquote class="blockquote card-text">
+                                                                <h5>{{item.category}}.</h5>
+                                                                <footer class="blockquote-footer">Added By: {{item.added_by.username}} <br> <cite title="Source Title">Created At: {{item.created_at}}</cite></footer>
+                                                            </blockquote>
+                                                            <a style="color:#E59866;" data-toggle="modal" data-target="#exampleModal">Delete</a> | <a style="color:#E59866;" href="/update/{{item.id}}">Update</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            {% endif %}
+                                            {% endfor %}
+                                            </div>
+                                              
+                                        </div>
                                     </div>
                                 </div>
                             </div>

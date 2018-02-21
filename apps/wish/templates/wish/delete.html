@@ -35,38 +35,19 @@
                     <div class="col-xl-9 col-lg-10 mx-auto" >
                         <div class="bg-faded rounded p-2" style="padding:50px; margin-top:50px;  box-shadow: 2px 4px 8px 2px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                             <div class="section-heading mb-1" style="margin-left:23px;">
-                                <h2 class="section-heading-lower text-capitalize" style="text-align: left; font-family: Raleway; margin-top:25px;">New Item</h2>
+                                <h2 class="section-heading-lower text-capitalize" style="text-align: left; font-family: Raleway; margin-top:25px;">Delete Item</h2>
                             </div>
                             <div style="display:inline-block;" >
                                 <div class="card" style="width:765px; margin-left:23px; margin-bottom:30px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
                                     <div class="card-header btn-toolbar mb-2 mb-md-0 bg-light">
-                                        <h4 style="color:#808B96; font-family: Raleway; font-size:22px; margin-left:23px;">Create a New Wish List Item</h4>
-                                        <div class="btn-toolbar mb-2 mb-md-0">
-                                            <div class="btn-group mr-2" style="margin-left:310px;">
-                                                <a href="/dashboard"><button class="btn btn-sm btn-outline-secondary">Cancel</button></a>
-                                            </div>
-                                        </div>
-                                        <div class="card-body text-secondary" style="text-align: right; font-family: Raleway;" action="/process" method="POST">
-                                            <form class="card-body" action="/add_item" method="POST">
+                                        <h4 style="color:#808B96; font-family: Raleway; font-size:22px; margin-left:23px;">Are you sure you want to delete {{item.item}}?</h4>
+                                        <div class="card-body text-secondary" style="text-align: right; font-family: Raleway;">
+                                            <form class="card-body" action="/destroy/{{item.id}}" method="POST">
                                                 {% csrf_token %}
-                                                <p>Wish List Item: <input type="text" name="item"></p>
-                                                <p>Description: <textarea type="textarea" name="description" rows="3" cols="19"></textarea></p>
-                                                <p>Image: <input type="text" name="image" placeholder=" image url"></p>
-                                                <p>Category:<select name="category">
-                                                        <option value="Animals">Animals</option>
-                                                        <option value="Art">Art</option>
-                                                        <option value="Beauty">Beauty</option>
-                                                        <option value="clothing">Clothing</option>
-                                                        <option value="DIY">DIY</option>
-                                                        <option value="Food">Food</option>
-                                                        <option value="Home">Home</option>
-                                                        <option value="Shopping">Shopping</option>
-                                                        <option value="Tech">Tech</option>
-                                                        <option value="Travel">Travel</option>
-                                                        <option value="Wedding">Wedding</option>
-                                                </select></p>
-                                                <input type="hidden" name="added_by" value="{{request.session.id}}">
-                                                <input type="Submit" vaule="Submit"  class="btn btn-sm btn-outline-secondary">
+                                                <input type="Submit" vaule="Delete" name="Delete" class="btn btn-sm btn-outline-secondary">
+                                                <div class="btn-group mr-2">
+                                                    <a href="/dashboard"><button class="btn btn-sm btn-outline-secondary">Cancel</button></a>
+                                                </div>
                                             </form>
                                         </div>  
                                     </div>  

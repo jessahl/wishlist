@@ -61,17 +61,26 @@ class ItemManager(models.Manager):
             errors['item_error'] = "no empty entries"
         elif len(postData['item']) < 3:
             errors['item_error2'] ="The item must be at least 3 characters."
+        elif len(postData['description']) == 0:
+            errors['description'] ="Please enter a description."
+        elif len(postData['image']) == 0:
+            errors['image_error'] = "Please upload a valid url"
+        elif len(postData['category']) == 0:
+            errors['category_error'] = "Please select a category"
         if errors:
             print("Error adding everything")
             return errors
         else:
             print("Added everything successfully")
             user = User.objects.get(id = int(postData['added_by']))
-            new_item = Item.objects.create(item = postData['item'], added_by = user )
+            new_item = Item.objects.create(item = postData['item'], description = postData['description'], image = postData['image'], added_by = user )
             return {'new_item':new_item}
 
 class Item(models.Model):
     item = models.CharField(max_length = 255)
+    description = models.TextField(blank=True)
+    image = models.URLField(blank=True)
+    category = models.CharField(max_length = 255, blank=True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     wished_by = models.ManyToManyField(User, related_name="wished_by")

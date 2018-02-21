@@ -18,4 +18,7 @@ urlpatterns = [
     url(r'other_items$', views.other_items),
     url(r'about$', views.about),
     url(r'contact$', views.contact),
+    url(r'edit/(?P<item_id>\d+)$', views.edit),
+    url(r'delete/(?P<item_id>\d+)$', views.delete),
+    url(r'wishlists$', views.wishlists),
 ] 

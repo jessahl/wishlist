@@ -55,6 +55,14 @@ def wish_list(request):
     }
     return render(request, 'wish/dashboard.html', context)
 
+def wishlists(request):
+    user = User.objects.get(id =request.session['id'])
+    context={
+        'user':user,
+        'wished': Item.objects.filter(wished_by = user)
+    }
+    return render(request, 'wish/wishlists.html', context)
+
 def test_wish_list(request):
     user = User.objects.get(id =request.session['id'])
     context={
@@ -102,7 +110,7 @@ def added_item(request):
         return redirect('wish/create')
     else:
         user = User.objects.get(id =request.session['id'])
-        item1 = Item.objects.create(item = request.POST['item'], added_by = user)
+        item1 = Item.objects.create(item = request.POST['item'], description = request.POST['description'], image = request.POST['image'], added_by = user)
         item1.wished_by.add(user)
         item1.save()
         messages.error(request, "You have successfully added an item")        
@@ -120,6 +128,13 @@ def unwish(request, item_id):
     item.wished_by.remove(user)
     return redirect('/dashboard')
 
+def delete(request, item_id):
+    item = Item.objects.get(id = item_id)
+    context = {
+        'item': item
+    }
+    return render(request, 'wish/delete.html', context)
+
 def destroy(request, item_id):
     Item.objects.get(id = item_id).delete()
     return redirect('/dashboard')
@@ -132,15 +147,8 @@ def update(request, item_id):
     return render(request, 'wish/update.html', context)
 
 def edit(request, item_id):
-    item2 = Item.objects.get(id= item_id)
-    error_3 = Item.objects.edit(request.POST)
-    if 'errors' in error_3:
-        for error in error_3:
-            print error_3[error]
-            messages.error(request, error_3[error])
-        return redirect('wish/update')
-    else:
-        item2 = Item.objects.update(item = request.POST['item'])
-        item2.save()
-        messages.error(request, "You have successfully updated an item")        
-        return redirect('/dashboard')
+    item = Item.objects.get(id = item_id)
+    item.item = request.POST['item']
+    item.save()
+    messages.error(request, "You have successfully updated an item")
+    return redirect('/dashboard')

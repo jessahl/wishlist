@@ -49,7 +49,7 @@
                                                 <a href="/create"><button class="btn btn-sm btn-outline-secondary">Add Item</button></a>
                                             </div>
                                         </div>
-                                        <div class="card-body text-secondary" style="text-align: right; font-family: Raleway;" action="/process" method="POST">
+                                        <div class="card-body text-secondary" style="text-align: right; font-family: Raleway;">
                                             <table class="table table-bordered" style="margin-bottom: 50px;">
                                                 <tr>
                                                     <th>Item</th>
@@ -63,7 +63,7 @@
                                                     <td class="text-capitalize"><a href="/wish_item/{{item.id}}" style="color:#E59866;">{{item.item}}</a></td>
                                                     <td class="text-capitalize">{{item.added_by.username}}</td>
                                                     <td class="text-capitalize">{{item.created_at}}</td>
-                                                    <td class="text-capitalize"><a style="color:#E59866;" data-toggle="modal" data-target="#exampleModal">Delete</a> | <a style="color:#E59866;" href="/update/{{item.id}}">Update</a></td>
+                                                    <td class="text-capitalize"><a style="color:#E59866;" href="/delete/{{item.id}}">Delete</a> | <a style="color:#E59866;" href="/update/{{item.id}}">Update</a></td>
                                                 </tr>
                                                 {% elif item.added_by.id != user.id %}
                                                 <tr>
@@ -85,7 +85,8 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -103,7 +104,7 @@
                 </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
